@@ -86,6 +86,8 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'scrooloose/nerdcommenter'
 
 	Plug 'mbbill/undotree'
+	Plug 'mhinz/vim-startify'
+	Plug 'voldikss/vim-floaterm'
 
     Plug 'vim-airline/vim-airline'
 	Plug 'frazrepo/vim-rainbow'
@@ -296,3 +298,19 @@ endfunction
 set statusline+=%{NearestMethodOrFunction()}
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 """ end of config of Vista.vim}}}
+
+"""{{{ config of startify
+
+let g:startify_custom_header =
+        \ startify#pad(split(system('fortune | cowsay -f dragon'), '\n'))
+let g:startify_bookmarks=[ 
+	\ {'rc': '~/.config/nvim/init.vim'},
+	\ '~/.zshrc'
+	\ ]
+
+"""end of config of startify }}}
+
+"""{{{ config with Floaterm
+command! Ranger FloatermNew --autoclose ranger
+
+"""end of config with Floaterm}}}
