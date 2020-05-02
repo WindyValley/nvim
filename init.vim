@@ -297,9 +297,9 @@ function! NearestMethodOrFunction() abort
 endfunction
 set statusline+=%{NearestMethodOrFunction()}
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
-""" end of config of Vista.vim}}}
+""" end of config for Vista.vim}}}
 
-"""{{{ config of startify
+"""{{{ config for startify
 
 let g:startify_custom_header =
         \ startify#pad(split(system('fortune | cowsay -f dragon'), '\n'))
@@ -308,7 +308,7 @@ let g:startify_bookmarks=[
 	\ '~/.zshrc'
 	\ ]
 
-"""end of config of startify }}}
+"""end of config for startify }}}
 
 """{{{ config with Floaterm
 command! Ranger FloatermNew --autoclose ranger
