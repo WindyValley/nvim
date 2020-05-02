@@ -302,7 +302,7 @@ autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 """{{{ config for startify
 
 let g:startify_custom_header =
-        \ startify#pad(split(system('fortune | cowsay -f dragon'), '\n'))
+        \ startify#pad(split(system('cowsay -f dragon Welcome to back, my deer friend!'), '\n'))
 let g:startify_bookmarks=[ 
 	\ {'rc': '~/.config/nvim/init.vim'},
 	\ '~/.zshrc'
