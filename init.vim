@@ -89,6 +89,9 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'mhinz/vim-startify'
 	Plug 'voldikss/vim-floaterm'
 
+	Plug 'denstiny/Terslation'
+	Plug 'SpringHan/Terslation.vim', {'on': ['TerslationToggle','TerslationWordTrans']}
+
     Plug 'vim-airline/vim-airline'
 	Plug 'frazrepo/vim-rainbow'
 
@@ -314,3 +317,7 @@ let g:startify_bookmarks=[
 command! Ranger FloatermNew --autoclose ranger
 
 """end of config with Floaterm}}}
+
+"""{{{ config for lines(bufferline & airline)
+let airline#extensions#tabline#enabled=1
+"""}}}
