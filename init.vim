@@ -311,6 +311,11 @@ let g:startify_bookmarks=[
 """end of config for startify }}}
 
 """{{{ config with Floaterm
+let g:floaterm_keymap_new    = '<F7>'
+let g:floaterm_keymap_prev   = '<F8>'
+let g:floaterm_keymap_next   = '<F9>'
+let g:floaterm_keymap_toggle = '<F10>'
+let g:floaterm_position	     = 'auto'
 command! Ranger FloatermNew --autoclose ranger
 
 """end of config with Floaterm}}}
