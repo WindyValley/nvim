@@ -1,5 +1,6 @@
 {
 	"explorer.icon.enableNerdfont":true,
+	"clangd.semanticHighlighting": true,
 	"suggest.autoTrigger":"always",
     "suggest.noselect": true,
     "suggest.enablePreselect": false,
