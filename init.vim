@@ -321,3 +321,4 @@ command! Ranger FloatermNew --autoclose ranger
 """{{{ config for lines(bufferline & airline)
 let airline#extensions#tabline#enabled=1
 """}}}
+let g:TerslationFloatWin=1

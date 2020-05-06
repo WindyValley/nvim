@@ -38,7 +38,6 @@
         "value": "\uf89f",
         "variable": "\ue71b"
     },
-	"python.jediEnabled": false,
     "languageserver": {
         "cmake": {
             "command": "cmake-language-server",
