@@ -1,7 +1,7 @@
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
     silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
 if !empty(glob('~/.config/nvim/_machine_different.vim/universal.vim'))
@@ -314,6 +314,11 @@ let g:startify_bookmarks=[
 """end of config for startify }}}
 
 """{{{ config with Floaterm
+let g:floaterm_keymap_new    = '<F7>'
+let g:floaterm_keymap_prev   = '<F8>'
+let g:floaterm_keymap_next   = '<F9>'
+let g:floaterm_keymap_toggle = '<F10>'
+let g:floaterm_position	     = 'topright'
 command! Ranger FloatermNew --autoclose ranger
 
 """end of config with Floaterm}}}
