@@ -80,20 +80,25 @@ call plug#begin('~/.config/nvim/plugged')
 	endif
 	Plug 'yianwillis/vimcdoc'
 
+	""" make me edit fast
     Plug 'neoclide/coc.nvim', {'branch':'release'}
-	Plug 'jackguo380/vim-lsp-cxx-highlight'
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'scrooloose/nerdcommenter'
+	Plug 'tpope/vim-surround'
 
+	""" Functional integrations
 	Plug 'mbbill/undotree'
 	Plug 'mhinz/vim-startify'
 	Plug 'voldikss/vim-floaterm'
+	Plug 'liuchengxu/vim-which-key'
 
 	Plug 'denstiny/Terslation'
 	Plug 'SpringHan/Terslation.vim', {'on': ['TerslationToggle','TerslationWordTrans']}
 
+	""" make it colorful
     Plug 'vim-airline/vim-airline'
 	Plug 'frazrepo/vim-rainbow'
+	Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 	Plug 'liuchengxu/vista.vim'
 call plug#end()
