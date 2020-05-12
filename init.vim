@@ -74,6 +74,8 @@ set shortmess+=c
 " diagnostics appear/become resolved.
 set signcolumn=yes
 
+set dictionary+=/usr/share/dict/words
+
 call plug#begin('~/.config/nvim/plugged')
 	if !empty(glob('~/.config/nvim/_machine_different.vim/pluglist.vim'))
 		source ~/.config/nvim/_machine_different.vim/pluglist.vim
@@ -99,6 +101,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'vim-airline/vim-airline'
 	Plug 'frazrepo/vim-rainbow'
 	Plug 'jackguo380/vim-lsp-cxx-highlight'
+	Plug 'sheerun/vim-polyglot'
 
 	Plug 'liuchengxu/vista.vim'
 call plug#end()
