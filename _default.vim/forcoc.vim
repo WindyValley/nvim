@@ -1,1 +1,1 @@
-let g:coc_global_extensions = ['coc-clangd', 'coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-yank', 'coc-gitignore', 'coc-stylelint', 'coc-lists', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-sourcekit', 'coc-translator', 'coc-todolist']
+let g:coc_global_extensions = ['coc-clangd', 'coc-python', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-yank', 'coc-gitignore', 'coc-stylelint', 'coc-lists', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-dictionary', 'coc-translator', 'coc-todolist']
