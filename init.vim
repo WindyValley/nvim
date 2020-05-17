@@ -96,6 +96,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 	Plug 'denstiny/Terslation'
 	Plug 'SpringHan/Terslation.vim', {'on': ['TerslationToggle','TerslationWordTrans']}
+	Plug 'voldikss/vim-translator'
 
 	""" make it colorful
     Plug 'vim-airline/vim-airline'
@@ -165,9 +166,6 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <S-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
@@ -274,10 +272,8 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " List item yankked
 nnoremap <silent> <space>y :CocList -A --normal yank<cr> 
-" Mappings using coc-translator
-nmap ts <Plug>(coc-translator-p) 
 " Mappings using coc-explorer
-nmap te :CocCommand explorer <CR>
+nmap <leader>ex :CocCommand explorer <CR>
 
 """ end of config for coc.nvim}}}
 
@@ -334,4 +330,27 @@ command! Ranger FloatermNew --autoclose ranger
 """{{{ config for lines(bufferline & airline)
 let airline#extensions#tabline#enabled=1
 """}}}
+
+"""{{{config for translators
 let g:TerslationFloatWin=1
+
+" Echo translation in the cmdline
+nmap <silent> <space>ts <Plug>Translate
+vmap <silent> <space>ts <Plug>TranslateV
+
+" Display translation in a window
+nmap <silent> <space>tw <Plug>TranslateW
+vmap <silent> <space>tw <Plug>TranslateWV
+
+" Replace the text with translation
+nmap <silent> <space>tr <Plug>TranslateR
+vmap <silent> <space>tr <Plug>TranslateRV
+
+" Translate the text in clipboard
+nmap <silent> <space>tx <Plug>TranslateX
+"""end of config for translators}}}
+
+"""{{{ config for whick-key
+nnoremap <silent> <space> :<c-u>WhichKey '<space>'<CR>
+nnoremap <silent> <leader> :<c-u>WhichKey '\'<CR>
+"""end of config for which-key}}}
