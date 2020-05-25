@@ -5,7 +5,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 if !empty(glob('~/.config/nvim/_machine_different.vim/universal.vim'))
-	source ~/.config/nvim/_machine_different.vim/universal.vim
+    source ~/.config/nvim/_machine_different.vim/universal.vim
 endif
 
 autocmd VimEnter * highlight clear SignColumn
@@ -27,7 +27,7 @@ syntax on
 
 "编辑行为
 set tabstop=4
-set noexpandtab	"用等宽空格替代Tab
+set noexpandtab    "用等宽空格替代Tab
 set shiftwidth=4
 set softtabstop=4
 setlocal scrolloff=5
@@ -44,7 +44,7 @@ set encoding=utf-8
 set lazyredraw
 
 "set clipboard=unnamed "启用系统剪贴板，vim有内置方案可以沟通系统剪贴板，如无必要，可以不启用
-"set paste	"启用粘贴，否则vim会将粘贴视作短时间内的大量输入
+"set paste    "启用粘贴，否则vim会将粘贴视作短时间内的大量输入
 set backspace=indent,eol,start
 
 "不创建备份文件
@@ -77,38 +77,38 @@ set signcolumn=yes
 set dictionary+=/usr/share/dict/words
 
 call plug#begin('~/.config/nvim/plugged')
-	if !empty(glob('~/.config/nvim/_machine_different.vim/pluglist.vim'))
-		source ~/.config/nvim/_machine_different.vim/pluglist.vim
-	endif
-	Plug 'yianwillis/vimcdoc'
+    if !empty(glob('~/.config/nvim/_machine_different.vim/pluglist.vim'))
+        source ~/.config/nvim/_machine_different.vim/pluglist.vim
+    endif
+    Plug 'yianwillis/vimcdoc'
 
-	""" make me edit fast
+    """ make me edit fast
     Plug 'neoclide/coc.nvim', {'branch':'release'}
-	Plug 'jiangmiao/auto-pairs'
-	Plug 'scrooloose/nerdcommenter'
-	Plug 'tpope/vim-surround'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'scrooloose/nerdcommenter'
+    Plug 'tpope/vim-surround'
 
-	""" Functional integrations
-	Plug 'mbbill/undotree'
-	Plug 'mhinz/vim-startify'
-	Plug 'voldikss/vim-floaterm'
-	Plug 'liuchengxu/vim-which-key'
+    """ Functional integrations
+    Plug 'mbbill/undotree'
+    Plug 'mhinz/vim-startify'
+    Plug 'voldikss/vim-floaterm'
+    Plug 'liuchengxu/vim-which-key'
 
-	Plug 'denstiny/Terslation'
-	Plug 'SpringHan/Terslation.vim', {'on': ['TerslationToggle','TerslationWordTrans']}
-	Plug 'voldikss/vim-translator'
+    Plug 'denstiny/Terslation'
+    Plug 'SpringHan/Terslation.vim', {'on': ['TerslationToggle','TerslationWordTrans']}
+    Plug 'voldikss/vim-translator'
 
-	""" make it colorful
+    """ make it colorful
     Plug 'vim-airline/vim-airline'
-	Plug 'frazrepo/vim-rainbow'
-	Plug 'jackguo380/vim-lsp-cxx-highlight'
-	Plug 'sheerun/vim-polyglot'
+    Plug 'frazrepo/vim-rainbow'
+    Plug 'jackguo380/vim-lsp-cxx-highlight'
+    Plug 'sheerun/vim-polyglot'
 
-	Plug 'liuchengxu/vista.vim'
+    Plug 'liuchengxu/vista.vim'
 call plug#end()
 
 if !empty(glob('~/.config/nvim/_machine_different.vim/dependonplug.vim'))
-	source ~/.config/nvim/_machine_different.vim/dependonplug.vim
+    source ~/.config/nvim/_machine_different.vim/dependonplug.vim
 endif
 
 " 针对文件格式的设置
@@ -150,7 +150,7 @@ nnoremap Q :q<CR>
 
 """ config for coc.nvim{{{
 if !empty(glob('~/.config/nvim/_machine_different.vim/forcoc.vim'))
-	source ~/.config/nvim/_machine_different.vim/forcoc.vim
+    source ~/.config/nvim/_machine_different.vim/forcoc.vim
 endif
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -167,13 +167,13 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" Use <CR> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
 if has('patch8.1.1068')
   " Use `complete_info` if your (Neo)Vim version supports it.
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+  inoremap <expr> <CR> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+  imap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 endif
 
 " Use `[g` and `]g` to navigate diagnostics
@@ -240,6 +240,7 @@ xmap <silent> <TAB> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
+nnoremap \\f :Format<CR>
 
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
@@ -254,15 +255,15 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings using CoCList:
 " Show all diagnostics.
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<CR>
 " Manage extensions.
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <space>e  :<C-u>CocList extensions<CR>
 " Show commands.
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent> <space>c  :<C-u>CocList commands<CR>
 " Find symbol of current document.
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent> <space>o  :<C-u>CocList outline<CR>
 " Search workspace symbols.
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<CR>
 " Do default action for next item.
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
@@ -271,7 +272,7 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " List item yankked
-nnoremap <silent> <space>y :CocList -A --normal yank<cr> 
+nnoremap <silent> <space>y :CocList -A --normal yank<CR> 
 " Mappings using coc-explorer
 nmap <leader>ex :CocCommand explorer <CR>
 
@@ -300,7 +301,7 @@ let g:vista#renderer#icons = {
  \   "variable": "\uf71b",
  \  }
 function! NearestMethodOrFunction() abort
-	return get(b:, 'vista_nearest_method_or_function', '')
+    return get(b:, 'vista_nearest_method_or_function', '')
 endfunction
 set statusline+=%{NearestMethodOrFunction()}
 autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
@@ -311,9 +312,9 @@ autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 let g:startify_custom_header =
         \ startify#pad(split(system('cowsay -f dragon Welcome back, my deer friend!'), '\n'))
 let g:startify_bookmarks=[ 
-	\ {'rc': '~/.config/nvim/init.vim'},
-	\ '~/.zshrc'
-	\ ]
+    \ {'rc': '~/.config/nvim/init.vim'},
+    \ '~/.zshrc'
+    \ ]
 
 """end of config for startify }}}
 
@@ -322,13 +323,28 @@ let g:floaterm_keymap_new    = '<F7>'
 let g:floaterm_keymap_prev   = '<F8>'
 let g:floaterm_keymap_next   = '<F9>'
 let g:floaterm_keymap_toggle = '<F10>'
-let g:floaterm_position	     = 'topright'
+let g:floaterm_position      = 'topright'
 command! Ranger FloatermNew --autoclose ranger
 
 """end of config with Floaterm}}}
 
 """{{{ config for lines(bufferline & airline)
-let airline#extensions#tabline#enabled=1
+if !exists('g:airline_symbols')
+   let g:airline_symbols = {}
+endif
+
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#right_alt_sep=''
+let g:airline#extensions#tabline#right_sep=''
+let g:airline#extensions#tabline#left_alt_sep=''
+let g:airline#extensions#tabline#left_sep=''
+
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
 """}}}
 
 """{{{config for translators
