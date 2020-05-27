@@ -100,6 +100,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     """ make it colorful
     Plug 'vim-airline/vim-airline'
+	Plug 'edkolev/tmuxline.vim'
     Plug 'frazrepo/vim-rainbow'
     Plug 'jackguo380/vim-lsp-cxx-highlight'
     Plug 'sheerun/vim-polyglot'
@@ -336,6 +337,8 @@ let g:airline#extensions#tabline#right_alt_sep=''
 let g:airline#extensions#tabline#right_sep=''
 let g:airline#extensions#tabline#left_alt_sep=''
 let g:airline#extensions#tabline#left_sep=''
+
+let g:airline#extensions#tmuxline#enabled=1
 
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
