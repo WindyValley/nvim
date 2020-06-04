@@ -27,7 +27,7 @@ syntax on
 
 "编辑行为
 set tabstop=4
-set noexpandtab    "用等宽空格替代Tab
+set expandtab    "用等宽空格替代Tab
 set shiftwidth=4
 set softtabstop=4
 setlocal scrolloff=5
@@ -100,7 +100,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     """ make it colorful
     Plug 'vim-airline/vim-airline'
-	Plug 'edkolev/tmuxline.vim'
+    Plug 'edkolev/tmuxline.vim'
     Plug 'frazrepo/vim-rainbow'
     Plug 'jackguo380/vim-lsp-cxx-highlight'
     Plug 'sheerun/vim-polyglot'
