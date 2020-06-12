@@ -27,7 +27,7 @@ syntax on
 
 "编辑行为
 set tabstop=4
-set noexpandtab    "用等宽空格替代Tab
+set expandtab    "用等宽空格替代Tab
 set shiftwidth=4
 set softtabstop=4
 setlocal scrolloff=5
@@ -117,7 +117,7 @@ endif
 augroup csrc
   au!
   autocmd FileType *      set nocindent smartindent
-  autocmd FileType c,cpp  set cindent
+  autocmd FileType c,cpp  set cindent ts=2 softtabstop=2 shiftwidth=2
 augroup END
 " Set a few indentation parameters. See the VIM help for cinoptions-values for
 " details.  These aren't absolute rules; they're just an approximation of
