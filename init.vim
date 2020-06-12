@@ -100,7 +100,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     """ make it colorful
     Plug 'vim-airline/vim-airline'
-	Plug 'edkolev/tmuxline.vim'
+    Plug 'edkolev/tmuxline.vim'
     Plug 'frazrepo/vim-rainbow'
     Plug 'jackguo380/vim-lsp-cxx-highlight'
     Plug 'sheerun/vim-polyglot'
