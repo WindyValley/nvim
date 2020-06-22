@@ -50,5 +50,6 @@
                 "buildDirectory": "build"
             }
     }
-  }
+  },
+  "git.enableGutters": true
 }

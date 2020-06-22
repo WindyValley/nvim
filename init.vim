@@ -42,6 +42,7 @@ filetype plugin indent on
 set mouse=a
 set encoding=utf-8
 set lazyredraw
+set foldmethod=syntax
 
 "set clipboard=unnamed "启用系统剪贴板，vim有内置方案可以沟通系统剪贴板，如无必要，可以不启用
 "set paste    "启用粘贴，否则vim会将粘贴视作短时间内的大量输入
@@ -305,7 +306,7 @@ let g:startify_custom_header =
         \ startify#pad(split(system('cowsay -f dragon Welcome back, my deer friend!'), '\n'))
 let g:startify_bookmarks=[ 
     \ {'rc': '~/.config/nvim/init.vim'},
-    \ '~/.zshrc'
+    \ {'zrc': '~/.zshrc'}
     \ ]
 
 """end of config for startify }}}
@@ -373,4 +374,5 @@ nmap <silent> <space>tx <Plug>TranslateX
 """{{{ config for whick-key
 nnoremap <silent> <space> :<c-u>WhichKey '<space>'<CR>
 nnoremap <silent> <leader> :<c-u>WhichKey '\'<CR>
+nnoremap <silent> g :<c-u>WhichKey 'g'<CR>
 """end of config for which-key}}}
