@@ -290,7 +290,7 @@ let g:rainbow_load_separately = [
 noremap <c-t> :silent! Vista finder coc<CR>
 noremap <c-l> :Vista!!<CR>
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-let g:vista_default_executive = 'ctags'
+let g:vista_default_executive = 'coc'
 let g:vista_fzf_preview = ['right:50%']
 let g:vista#renderer#enable_icon = 1
 let g:vista#renderer#icons = {
