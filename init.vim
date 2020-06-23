@@ -374,5 +374,4 @@ nmap <silent> <space>tx <Plug>TranslateX
 """{{{ config for whick-key
 nnoremap <silent> <space> :<c-u>WhichKey '<space>'<CR>
 nnoremap <silent> <leader> :<c-u>WhichKey '\'<CR>
-nnoremap <silent> g :<c-u>WhichKey 'g'<CR>
 """end of config for which-key}}}
