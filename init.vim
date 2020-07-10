@@ -135,8 +135,9 @@ augroup END
 " In Makefiles, don't expand tabs to spaces, since we need the actual tabs
 autocmd FileType make set noexpandtab
 
-
-" Custom Key Mapping
+" convenient motion when line wrap on
+noremap j gj
+noremap k gk
 " tab operations
 nnoremap <leader>tn :tabn<CR>
 nnoremap <leader>tp :tabp<CR>
