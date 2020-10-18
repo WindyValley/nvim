@@ -1,7 +1,7 @@
 {
-    "explorer.icon.enableNerdfont":true,
+    "explorer.icon.enableNerdfont": true,
     "clangd.semanticHighlighting": true,
-    "suggest.autoTrigger":"always",
+    "suggest.autoTrigger": "always",
     "suggest.noselect": true,
     "suggest.enablePreselect": false,
     "suggest.triggerAfterInsertEnter": false,
@@ -39,17 +39,23 @@
         "value": "\uf89f",
         "variable": "\ue71b"
     },
+    "snippets.extends": {
+        "cpp": ["c"],
+        "typescript": ["javascript"]
+    },
     "languageserver": {
         "cmake": {
             "command": "cmake-language-server",
-            "filetypes": ["cmake"],
+            "filetypes": [
+                "cmake"
+            ],
             "rootPatterns": [
                 "build/"
             ],
             "initializationOptions": {
                 "buildDirectory": "build"
             }
-    }
-  },
-  "git.enableGutters": true
+        }
+    },
+    "git.enableGutters": true
 }

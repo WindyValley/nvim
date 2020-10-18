@@ -87,6 +87,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'jiangmiao/auto-pairs'
     Plug 'scrooloose/nerdcommenter'
     Plug 'tpope/vim-surround'
+    Plug 'lervag/vimtex', {'for': 'tex'}
+    Plug 'honza/vim-snippets'
 
     """ Functional integrations
     Plug 'mbbill/undotree'
@@ -275,6 +277,24 @@ nnoremap <silent> <space>y :CocList -A --normal yank<CR>
 " Mappings using coc-explorer
 nmap <leader>ex :CocCommand explorer <CR>
 
+" For coc-snippets
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x  <Plug>(coc-convert-snippet)
 """ end of config for coc.nvim}}}
 
 """ config for for vim-rainbow{{{
@@ -378,3 +398,21 @@ nmap <silent> <space>tx <Plug>TranslateX
 nnoremap <silent> <space> :<c-u>WhichKey '<space>'<CR>
 nnoremap <silent> <leader> :<c-u>WhichKey '\'<CR>
 """end of config for which-key}}}
+
+"""{{{ config for vimtex
+let g:tex_flavor="latex"
+" use vimtex as default compiler
+let g:vimtex_compiler_latexmk_engines={'_':'-xelatex'}
+let g:vimtex_compiler_latexrun_engines={'_':'xelatex'}
+
+" use zathura as the default pdf reviewer
+let g:vimtex_view_method='zathura'
+
+" show the compiler hint
+let g:vimtex_quickfix_mode = 1
+
+" hide the last two lines
+set conceallevel=1
+
+let g:tex_conceal='abdmg'
+"""}}}
