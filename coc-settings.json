@@ -40,8 +40,12 @@
         "variable": "\ue71b"
     },
     "snippets.extends": {
-        "cpp": ["c"],
-        "typescript": ["javascript"]
+        "cpp": [
+            "c"
+        ],
+        "typescript": [
+            "javascript"
+        ]
     },
     "languageserver": {
         "cmake": {
@@ -54,6 +58,20 @@
             ],
             "initializationOptions": {
                 "buildDirectory": "build"
+            }
+        },
+        "golang": {
+            "command": "gopls",
+            "rootPatterns": [
+                "go.mod"
+            ],
+            "filetypes": [
+                "go"
+            ],
+            "initializationOptions": {
+                "gocodeCompletionEnabled": true,
+                "diagnosticsEnabled": true,
+                "lintTool": "golint"
             }
         }
     },
