@@ -62,6 +62,7 @@ set incsearch
 set ignorecase
 set smartcase
 exec "nohlsearch"
+noremap <M-c> :nohlsearch<CR>
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -76,13 +77,14 @@ set signcolumn=yes
 
 set dictionary+=/usr/share/dict/words
 
+let g:ale_disable_lsp=1
 call plug#begin('~/.config/nvim/plugged')
     if !empty(glob('~/.config/nvim/_machine_different.vim/pluglist.vim'))
         source ~/.config/nvim/_machine_different.vim/pluglist.vim
     endif
     Plug 'yianwillis/vimcdoc'
 
-    """ make me edit fast
+    """ make me edit easy
     Plug 'neoclide/coc.nvim', {'branch':'release'}
     Plug 'fatih/vim-go', {'for': ['go', 'vim-plug'], 'tag': '*'}
     Plug 'jiangmiao/auto-pairs'
@@ -98,6 +100,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'liuchengxu/vim-which-key'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
     Plug 'junegunn/fzf.vim'
+    Plug 'dense-analysis/ale'
 
     Plug 'denstiny/Terslation'
     Plug 'SpringHan/Terslation.vim', {'on': ['TerslationToggle','TerslationWordTrans']}
@@ -274,7 +277,7 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 " List item yankked
-nnoremap <silent> <space>y :CocList -A --normal yank<CR> 
+nnoremap <silent> <space>y :CocList -A --normal yank<CR>
 " Mappings using coc-explorer
 nmap <leader>ex :CocCommand explorer <CR>
 
@@ -327,7 +330,7 @@ autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 
 let g:startify_custom_header =
         \ startify#pad(split(system('cowsay -f dragon Welcome back, my deer friend!'), '\n'))
-let g:startify_bookmarks=[ 
+let g:startify_bookmarks=[
     \ {'rc': '~/.config/nvim/init.vim'},
     \ {'zrc': '~/.zshrc'}
     \ ]
@@ -340,10 +343,19 @@ let g:floaterm_keymap_prev   = '<space>fp'
 let g:floaterm_keymap_next   = '<space>fn'
 let g:floaterm_keymap_toggle = '<space>ft'
 let g:floaterm_position      = 'topright'
-command! Ranger FloatermNew --autoclose ranger
+command! Ranger FloatermNew --autoclose=1 ranger
 nnoremap <space>fr :Ranger<CR>
 
 """end of config with Floaterm}}}
+"""{{{ config for ale
+"自定义error和warning图标
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚡'
+
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+"""}}}
 
 """{{{ config for lines(bufferline & airline)
 if !exists('g:airline_symbols')
@@ -351,11 +363,12 @@ if !exists('g:airline_symbols')
 endif
 
 let g:airline_section_b = airline#section#create(['%{get(b:,''coc_git_status'','''')}','%{get(g:,''coc_git_status'','''')}'])
-let g:airline#extensions#coc#enabled = 1
-let airline#extensions#coc#error_symbol = 'E:'
-let airline#extensions#coc#warning_symbol = 'W:'
-let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
-let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
+
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#error_symbol = '✘'
+let g:airline#extensions#ale#warning_symbol = '⚡'
+let g:airline#extensions#ale#open_lnum_symbol = '[:'
+let g:airline#extensions#ale#close_lnum_symbol = '] '
 
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#right_alt_sep=''
@@ -447,3 +460,4 @@ let g:go_highlight_variable_assignments = 0
 let g:go_highlight_variable_declarations = 0
 let g:go_doc_keywordprg_enabled = 0
 """end}}}
+
