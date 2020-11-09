@@ -92,6 +92,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tpope/vim-surround'
     Plug 'lervag/vimtex', {'for': 'tex'}
     Plug 'honza/vim-snippets'
+    Plug 'gcmt/wildfire.vim'
 
     """ Functional integrations
     Plug 'mbbill/undotree'
@@ -461,3 +462,11 @@ let g:go_highlight_variable_declarations = 0
 let g:go_doc_keywordprg_enabled = 0
 """end}}}
 
+"""{{{ config for wildfire.vim
+" use '*' to mean 'all other filetypes'
+" in this example, html and xml share the same text objects
+let g:wildfire_objects = {
+    \ "*" : ["i'", "i\"", "i<", "i)", "i]", "i}", "ip", "if", "af"],
+    \ "html,xml,php" : ["at", "it"],
+    \}
+"""}}}
