@@ -92,6 +92,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tpope/vim-surround'
     Plug 'lervag/vimtex', {'for': 'tex'}
     Plug 'honza/vim-snippets'
+    Plug 'gcmt/wildfire.vim'
 
     """ Functional integrations
     Plug 'mbbill/undotree'
@@ -108,7 +109,6 @@ call plug#begin('~/.config/nvim/plugged')
 
     """ make it colorful
     Plug 'vim-airline/vim-airline'
-    Plug 'edkolev/tmuxline.vim'
     Plug 'frazrepo/vim-rainbow'
     Plug 'jackguo380/vim-lsp-cxx-highlight'
     Plug 'sheerun/vim-polyglot'
@@ -305,10 +305,9 @@ xmap <leader>x  <Plug>(coc-convert-snippet)
 let g:rainbow_active = 1
 
 let g:rainbow_load_separately = [
-    \ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']]  ],
+    \ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']], ['<', '>']],
     \ [ '*.tex' , [['(', ')'], ['\[', '\]']]  ],
-    \ [ '*.cpp' , [['(', ')'], ['\[', '\]'], ['{', '}']]  ],
-    \ [ '*.{html,htm}' , [['(', ')'], ['\[', '\]'], ['{', '}'], ['<\a[^>]*>', '</[^>]*>']]  ],
+    \ [ '*.cpp' , [['(', ')'], ['\[', '\]'], ['{', '}']], ['<', '>']],
     \ ]
 """ end of config for vim-rainbow}}}
 
@@ -375,8 +374,6 @@ let g:airline#extensions#tabline#right_alt_sep=''
 let g:airline#extensions#tabline#right_sep=''
 let g:airline#extensions#tabline#left_alt_sep=''
 let g:airline#extensions#tabline#left_sep=''
-
-let g:airline#extensions#tmuxline#enabled=0
 
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
@@ -461,3 +458,11 @@ let g:go_highlight_variable_declarations = 0
 let g:go_doc_keywordprg_enabled = 0
 """end}}}
 
+"""{{{ config for wildfire.vim
+" use '*' to mean 'all other filetypes'
+" in this example, html and xml share the same text objects
+let g:wildfire_objects = {
+    \ "*" : ["i'", "i\"", "i<", "i)", "i]", "i}", "ip", "if", "af"],
+    \ "html,xml,php" : ["at", "it"],
+    \}
+"""}}}
