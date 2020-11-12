@@ -8,6 +8,8 @@ if !empty(glob('~/.config/nvim/_machine_different.vim/universal.vim'))
     source ~/.config/nvim/_machine_different.vim/universal.vim
 endif
 
+source ~/.config/nvim/keymap.vim
+
 autocmd VimEnter * highlight clear SignColumn
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
@@ -88,7 +90,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'neoclide/coc.nvim', {'branch':'release'}
     Plug 'fatih/vim-go', {'for': ['go', 'vim-plug'], 'tag': '*'}
     Plug 'jiangmiao/auto-pairs'
-    Plug 'scrooloose/nerdcommenter'
+    Plug 'tyru/caw.vim'
     Plug 'tpope/vim-surround'
     Plug 'lervag/vimtex', {'for': 'tex'}
     Plug 'honza/vim-snippets'
@@ -142,23 +144,7 @@ augroup END
 " In Makefiles, don't expand tabs to spaces, since we need the actual tabs
 autocmd FileType make set noexpandtab
 
-" convenient motion when line wrap on
-noremap j gj
-noremap k gk
-" tab operations
-nnoremap <leader>tn :tabn<CR>
-nnoremap <leader>tp :tabp<CR>
-nnoremap <leader>tc :tabnew<space>
-nnoremap <leader>td :tabclose<CR>
-
-" file operations
-nnoremap S :w<CR>
-nnoremap R :source $MYVIMRC<CR>
-nnoremap Q :q<CR>
-
-nmap <F1> :h
-
-""" config for coc.nvim{{{
+"" config for coc.nvim{{{
 if !empty(glob('~/.config/nvim/_machine_different.vim/forcoc.vim'))
     source ~/.config/nvim/_machine_different.vim/forcoc.vim
 endif
@@ -260,24 +246,25 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " Mappings using CoCList:
 " Show all diagnostics.
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<CR>
+nnoremap <silent> <space>la  :<C-u>CocList diagnostics<CR>
 " Manage extensions.
-nnoremap <silent> <space>e  :<C-u>CocList extensions<CR>
+nnoremap <silent> <space>le  :<C-u>CocList extensions<CR>
 " Show commands.
-nnoremap <silent> <space>c  :<C-u>CocList commands<CR>
+nnoremap <silent> <space>lc  :<C-u>CocList commands<CR>
 " Find symbol of current document.
-nnoremap <silent> <space>o  :<C-u>CocList outline<CR>
+nnoremap <silent> <space>lo  :<C-u>CocList outline<CR>
 " Search workspace symbols.
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<CR>
+nnoremap <silent> <space>ls  :<C-u>CocList -I symbols<CR>
 " Do default action for next item.
 nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
+nnoremap <silent> <space>lp  :<C-u>CocListResume<CR>
 " List item yankked
-nnoremap <silent> <space>y :CocList -A --normal yank<CR>
+nnoremap <silent> <space>ly :CocList -A --normal yank<CR>
+" List float terms
+nnoremap <silent> <space>lt :CocList floaterm<CR>
 " Mappings using coc-explorer
 nmap <F2> :CocCommand explorer <CR>
 
@@ -331,9 +318,10 @@ let g:floaterm_keymap_new    = '<space>fc'
 let g:floaterm_keymap_prev   = '<space>fp'
 let g:floaterm_keymap_next   = '<space>fn'
 let g:floaterm_keymap_toggle = '<space>ft'
-let g:floaterm_position      = 'topright'
+let g:floaterm_position      = 'center'
 command! Ranger FloatermNew --autoclose=1 ranger
 nnoremap <space>fr :Ranger<CR>
+tnoremap fr <C-\><C-n>:Ranger<CR>
 
 """end of config with Floaterm}}}
 """{{{ config for ale
@@ -456,3 +444,8 @@ let g:wildfire_objects = {
     \ "html,xml,php" : ["at", "it"],
     \}
 """}}}
+
+"""{{{ keymap with fzf.vim
+nnoremap <silent> <space>lb :Buffers<CR>
+nnoremap <silent> <space>lh :History<CR>
+"""
