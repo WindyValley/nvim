@@ -109,7 +109,6 @@ call plug#begin('~/.config/nvim/plugged')
 
     """ make it colorful
     Plug 'vim-airline/vim-airline'
-    Plug 'frazrepo/vim-rainbow'
     Plug 'jackguo380/vim-lsp-cxx-highlight'
     Plug 'sheerun/vim-polyglot'
 
@@ -157,6 +156,7 @@ nnoremap S :w<CR>
 nnoremap R :source $MYVIMRC<CR>
 nnoremap Q :q<CR>
 
+nmap <F1> :h
 
 """ config for coc.nvim{{{
 if !empty(glob('~/.config/nvim/_machine_different.vim/forcoc.vim'))
@@ -279,7 +279,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 " List item yankked
 nnoremap <silent> <space>y :CocList -A --normal yank<CR>
 " Mappings using coc-explorer
-nmap <leader>ex :CocCommand explorer <CR>
+nmap <F2> :CocCommand explorer <CR>
 
 " For coc-snippets
 " Use <C-l> for trigger snippet expand.
@@ -300,16 +300,6 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " Use <leader>x for convert visual selected code to snippet
 xmap <leader>x  <Plug>(coc-convert-snippet)
 """ end of config for coc.nvim}}}
-
-""" config for for vim-rainbow{{{
-let g:rainbow_active = 1
-
-let g:rainbow_load_separately = [
-    \ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']], ['<', '>']],
-    \ [ '*.tex' , [['(', ')'], ['\[', '\]']]  ],
-    \ [ '*.cpp' , [['(', ')'], ['\[', '\]'], ['{', '}']], ['<', '>']],
-    \ ]
-""" end of config for vim-rainbow}}}
 
 """ config for Vista.vim{{{
 noremap <c-t> :silent! Vista finder coc<CR>
