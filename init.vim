@@ -53,6 +53,16 @@ set backspace=indent,eol,start
 set nobackup
 set nowritebackup
 
+" undo文件设置
+if has("persistent_undo")
+    if has('nvim')
+        set undodir=~/.cache/nvim/undo
+    else
+        set undodir=~/.cache/vim/undo'
+    endif
+    set undofile
+endif
+
 " Status/command bar
 set laststatus=2
 set autochdir
@@ -64,7 +74,6 @@ set incsearch
 set ignorecase
 set smartcase
 exec "nohlsearch"
-noremap <M-c> :nohlsearch<CR>
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -449,3 +458,9 @@ let g:wildfire_objects = {
 nnoremap <silent> <space>lb :Buffers<CR>
 nnoremap <silent> <space>lh :History<CR>
 """
+
+"""{{{ config for UndoTree
+let g:undotree_WindowLayout='Layout 2'
+nnoremap <M-u> :UndotreeShow<CR>:UndotreeFocus<CR>
+"""}}}
+

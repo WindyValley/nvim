@@ -19,4 +19,5 @@ nnoremap R :source $MYVIMRC<CR>
 nnoremap Q :q<CR>
 
 nmap <F1> :h<space>
+noremap <M-c> :nohlsearch<CR>
 
