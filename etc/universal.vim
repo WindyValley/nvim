@@ -22,6 +22,7 @@ set shiftwidth=4
 set softtabstop=4
 setlocal scrolloff=5
 set hidden
+set completeopt=longest,noinsert,menuone,noselect,preview
 
 "系统级设置
 set nocompatible "关闭对vi的兼容

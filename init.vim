@@ -9,7 +9,7 @@ if !empty(glob('~/.config/nvim/_machine_different.vim/universal.vim'))
 endif
 
 source ~/.config/nvim/etc/universal.vim
-source ~/.config/nvim/keymap.vim
+source ~/.config/nvim/keybindings.vim
 
 call plug#begin('~/.config/nvim/plugged')
     if !empty(glob('~/.config/nvim/_machine_different.vim/pluglist.vim'))
@@ -26,6 +26,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'lervag/vimtex', {'for': 'tex'}
     Plug 'honza/vim-snippets'
     Plug 'gcmt/wildfire.vim'
+    Plug 'brooth/far.vim', { 'on': ['F', 'Far', 'Fardo']  }
 
     """ Functional integrations
     Plug 'mbbill/undotree'
@@ -225,3 +226,7 @@ let g:undotree_WindowLayout='Layout 2'
 nnoremap <M-u> :UndotreeShow<CR>:UndotreeFocus<CR>
 """}}}
 
+"""
+nnoremap <LEADER>fr :Farr<CR>
+let g:far#enable_undo = 1
+"""
