@@ -65,10 +65,7 @@
             }
         },
         "golang": {
-            "command": "gopls",
-            "rootPatterns": [
-                "go.mod"
-            ],
+            "command": "go-langserver",
             "filetypes": [
                 "go"
             ],

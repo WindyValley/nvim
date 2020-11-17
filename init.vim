@@ -8,87 +8,9 @@ if !empty(glob('~/.config/nvim/_machine_different.vim/universal.vim'))
     source ~/.config/nvim/_machine_different.vim/universal.vim
 endif
 
+source ~/.config/nvim/etc/universal.vim
 source ~/.config/nvim/keymap.vim
 
-autocmd VimEnter * highlight clear SignColumn
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-"一些外观上的修改
-set formatoptions-=tc
-let $t_ut=''
-set t_Co=256
-set number
-set relativenumber
-set ruler
-set cursorline
-set cmdheight=2
-set wildmenu
-syntax enable
-syntax on
-
-"编辑行为
-set tabstop=4
-set expandtab    "用等宽空格替代Tab
-set shiftwidth=4
-set softtabstop=4
-setlocal scrolloff=5
-set hidden
-
-"系统级设置
-set nocompatible "关闭对vi的兼容
-filetype on
-filetype indent on
-filetype plugin on
-filetype plugin indent on
-set mouse=a
-set encoding=utf-8
-set lazyredraw
-set foldmethod=syntax
-
-"set clipboard=unnamed "启用系统剪贴板，vim有内置方案可以沟通系统剪贴板，如无必要，可以不启用
-"set paste    "启用粘贴，否则vim会将粘贴视作短时间内的大量输入
-set backspace=indent,eol,start
-
-"不创建备份文件
-set nobackup
-set nowritebackup
-
-" undo文件设置
-if has("persistent_undo")
-    if has('nvim')
-        set undodir=~/.cache/nvim/undo
-    else
-        set undodir=~/.cache/vim/undo'
-    endif
-    set undofile
-endif
-
-" Status/command bar
-set laststatus=2
-set autochdir
-set showcmd
-
-"Search settings
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-exec "nohlsearch"
-
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-set signcolumn=yes
-
-set dictionary+=/usr/share/dict/words
-
-let g:ale_disable_lsp=1
 call plug#begin('~/.config/nvim/plugged')
     if !empty(glob('~/.config/nvim/_machine_different.vim/pluglist.vim'))
         source ~/.config/nvim/_machine_different.vim/pluglist.vim
@@ -109,6 +31,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'mbbill/undotree'
     Plug 'mhinz/vim-startify'
     Plug 'voldikss/vim-floaterm'
+    Plug 'ryanoasis/vim-devicons'
     Plug 'liuchengxu/vim-which-key'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
     Plug 'junegunn/fzf.vim'
@@ -120,7 +43,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     """ make it colorful
     Plug 'vim-airline/vim-airline'
-    Plug 'jackguo380/vim-lsp-cxx-highlight'
+    Plug 'jackguo380/vim-lsp-cxx-highlight', {'for': ['c', 'cpp']}
     Plug 'sheerun/vim-polyglot'
 
     Plug 'liuchengxu/vista.vim'
@@ -130,172 +53,7 @@ if !empty(glob('~/.config/nvim/_machine_different.vim/dependonplug.vim'))
     source ~/.config/nvim/_machine_different.vim/dependonplug.vim
 endif
 
-" 针对文件格式的设置
-" C/C++ programming helpers
-augroup csrc
-  au!
-  autocmd FileType *      set nocindent smartindent
-  autocmd FileType c,cpp  set cindent ts=2 softtabstop=2 shiftwidth=2
-augroup END
-" Set a few indentation parameters. See the VIM help for cinoptions-values for
-" details.  These aren't absolute rules; they're just an approximation of
-" common style in LLVM source.
-set cinoptions=:0,g0,(0,Ws,l1
-" Add and delete spaces in increments of `shiftwidth' for tabs
-set smarttab
-
-" LLVM Makefiles can have names such as Makefile.rules or TEST.nightly.Makefile,
-" so it's important to categorize them as such.
-augroup filetype
-  au! BufRead,BufNewFile *Makefile* set filetype=make
-augroup END
-
-" In Makefiles, don't expand tabs to spaces, since we need the actual tabs
-autocmd FileType make set noexpandtab
-
-"" config for coc.nvim{{{
-if !empty(glob('~/.config/nvim/_machine_different.vim/forcoc.vim'))
-    source ~/.config/nvim/_machine_different.vim/forcoc.vim
-endif
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <CR> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-if has('patch8.1.1068')
-  " Use `complete_info` if your (Neo)Vim version supports it.
-  inoremap <expr> <CR> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  imap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap keys for applying codeAction to the current line.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Introduce function text object
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-
-" Use <TAB> for selections ranges.
-" NOTE: Requires 'textDocument/selectionRange' support from the language server.
-" coc-tsserver, coc-python are the examples of servers that support it.
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
-
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
-nnoremap \\f :Format<CR>
-
-" Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Mappings using CoCList:
-" Show all diagnostics.
-nnoremap <silent> <space>la  :<C-u>CocList diagnostics<CR>
-" Manage extensions.
-nnoremap <silent> <space>le  :<C-u>CocList extensions<CR>
-" Show commands.
-nnoremap <silent> <space>lc  :<C-u>CocList commands<CR>
-" Find symbol of current document.
-nnoremap <silent> <space>lo  :<C-u>CocList outline<CR>
-" Search workspace symbols.
-nnoremap <silent> <space>ls  :<C-u>CocList -I symbols<CR>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent> <space>lp  :<C-u>CocListResume<CR>
-" List item yankked
-nnoremap <silent> <space>ly :CocList -A --normal yank<CR>
-" List float terms
-nnoremap <silent> <space>lt :CocList floaterm<CR>
-" Mappings using coc-explorer
-nmap <F2> :CocCommand explorer <CR>
-
-" For coc-snippets
-" Use <C-l> for trigger snippet expand.
-imap <C-l> <Plug>(coc-snippets-expand)
-
-" Use <C-j> for select text for visual placeholder of snippet.
-vmap <C-j> <Plug>(coc-snippets-select)
-
-" Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<c-j>'
-
-" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-let g:coc_snippet_prev = '<c-k>'
-
-" Use <C-j> for both expand and jump (make expand higher priority.)
-imap <C-j> <Plug>(coc-snippets-expand-jump)
-
-" Use <leader>x for convert visual selected code to snippet
-xmap <leader>x  <Plug>(coc-convert-snippet)
-""" end of config for coc.nvim}}}
+so ~/.config/nvim/etc/coc.vim
 
 """ config for Vista.vim{{{
 noremap <c-t> :silent! Vista finder coc<CR>
@@ -333,8 +91,11 @@ nnoremap <space>fr :Ranger<CR>
 tnoremap fr <C-\><C-n>:Ranger<CR>
 
 """end of config with Floaterm}}}
+
 """{{{ config for ale
 "自定义error和warning图标
+let g:ale_disable_lsp=1
+
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚡'
 
@@ -457,7 +218,7 @@ let g:wildfire_objects = {
 """{{{ keymap with fzf.vim
 nnoremap <silent> <space>lb :Buffers<CR>
 nnoremap <silent> <space>lh :History<CR>
-"""
+"""}}}
 
 """{{{ config for UndoTree
 let g:undotree_WindowLayout='Layout 2'
