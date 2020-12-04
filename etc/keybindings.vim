@@ -20,4 +20,6 @@ nnoremap Q :q<CR>
 
 nmap <F1> :h<space>
 noremap <M-c> :nohlsearch<CR>
+nnoremap <M-]> zR
+nnoremap <M-[> zM
 

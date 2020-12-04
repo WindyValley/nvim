@@ -1,10 +1,10 @@
 {
     "explorer.icon.enableNerdfont": true,
-    "diagnostic.displayByAle": true,
+    "diagnostic.displayByAle": false,
     "clangd.semanticHighlighting": true,
     "codeLens.enable": true,
     "git.enableGutters": true,
-    "git.addGBlameToVirtualText": false,
+    "git.addGBlameToVirtualText": true,
     "suggest.autoTrigger": "always",
     "suggest.noselect": true,
     "suggest.enablePreselect": false,

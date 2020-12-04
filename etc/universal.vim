@@ -33,7 +33,7 @@ filetype plugin indent on
 set mouse=a
 set encoding=utf-8
 set lazyredraw
-set foldmethod=syntax
+" set foldmethod=syntax
 
 "set clipboard=unnamed "启用系统剪贴板，vim有内置方案可以沟通系统剪贴板，如无必要，可以不启用
 "set paste    "启用粘贴，否则vim会将粘贴视作短时间内的大量输入

@@ -9,7 +9,7 @@ if !empty(glob('~/.config/nvim/_machine_different.vim/universal.vim'))
 endif
 
 source ~/.config/nvim/etc/universal.vim
-source ~/.config/nvim/keybindings.vim
+source ~/.config/nvim/etc/keybindings.vim
 
 call plug#begin('~/.config/nvim/plugged')
     if !empty(glob('~/.config/nvim/_machine_different.vim/pluglist.vim'))
@@ -30,14 +30,15 @@ call plug#begin('~/.config/nvim/plugged')
 
     """ Functional integrations
     Plug 'mbbill/undotree'
+    Plug 'liuchengxu/vista.vim'
     Plug 'mhinz/vim-startify'
     Plug 'voldikss/vim-floaterm'
     Plug 'ryanoasis/vim-devicons'
     Plug 'liuchengxu/vim-which-key'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
     Plug 'junegunn/fzf.vim'
-    Plug 'dense-analysis/ale'
-
+    Plug 'skywind3000/asynctasks.vim'
+    Plug 'skywind3000/asyncrun.vim'
     Plug 'denstiny/Terslation'
     Plug 'SpringHan/Terslation.vim', {'on': ['TerslationToggle','TerslationWordTrans']}
     Plug 'voldikss/vim-translator'
@@ -45,9 +46,8 @@ call plug#begin('~/.config/nvim/plugged')
     """ make it colorful
     Plug 'vim-airline/vim-airline'
     Plug 'jackguo380/vim-lsp-cxx-highlight', {'for': ['c', 'cpp']}
-    Plug 'sheerun/vim-polyglot'
-
-    Plug 'liuchengxu/vista.vim'
+    Plug 'nvim-treesitter/nvim-treesitter'
+    " Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 if !empty(glob('~/.config/nvim/_machine_different.vim/dependonplug.vim'))
@@ -67,7 +67,6 @@ let g:vista#renderer#icons = {
  \   "function": "\uf794",
  \   "variable": "\uf71b",
  \  }
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
 """ end of config for Vista.vim}}}
 
 """{{{ config for startify
@@ -112,11 +111,11 @@ endif
 
 let g:airline_section_b = airline#section#create(['%{get(b:,''coc_git_status'','''')}','%{get(g:,''coc_git_status'','''')}'])
 
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#ale#error_symbol = '✘'
-let g:airline#extensions#ale#warning_symbol = '⚡'
-let g:airline#extensions#ale#open_lnum_symbol = '[:'
-let g:airline#extensions#ale#close_lnum_symbol = '] '
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#coc#error_symbol = '✘'
+let g:airline#extensions#coc#warning_symbol = '⚡'
+let g:airline#extensions#coc#open_lnum_symbol = '[:'
+let g:airline#extensions#coc#close_lnum_symbol = '] '
 
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#right_alt_sep=''
@@ -226,7 +225,36 @@ let g:undotree_WindowLayout='Layout 2'
 nnoremap <M-u> :UndotreeShow<CR>:UndotreeFocus<CR>
 """}}}
 
-"""
+""" config for far
 nnoremap <LEADER>fr :Farr<CR>
 let g:far#enable_undo = 1
+"""
+
+""" config for nvim-treesitter
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = {},  -- list of language that will be disabled
+  },
+}
+EOF
+"""
+
+""" config for Asyncrun/AsynxTasks
+au! BufRead,BufNewFile .tasks set ft=dosini
+let g:asyncrun_mode = 'term'
+let g:asyncrun_rootmarkers=['.git', '.svn', '.project', 'build', 'go.mod', 'Cargo.toml']
+let g:asynctasks_term_pos = 'tab'
+let g:asynctasks_extra_config = [
+            \ '~/.config/nvim/tasks.ini',
+            \]
+
+nnoremap <silent><F7> :AsyncTask project-build<CR>
+nnoremap <silent><C-F7> :AsyncTask file-build<CR>
+nnoremap <silent><F6> :AsyncTask project-run<CR>
+nnoremap <silent><C-F6> :AsyncTask project-run<CR>
 """
