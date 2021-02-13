@@ -258,5 +258,5 @@ let g:asynctasks_extra_config = [
 nnoremap <silent><F7> :AsyncTask project-build<CR>
 nnoremap <silent><C-F7> :AsyncTask file-build<CR>
 nnoremap <silent><F6> :AsyncTask project-run<CR>
-nnoremap <silent><C-F6> :AsyncTask project-run<CR>
+nnoremap <silent><C-F6> :AsyncTask file-run<CR>
 """
