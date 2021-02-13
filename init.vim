@@ -39,6 +39,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'junegunn/fzf.vim'
     Plug 'skywind3000/asynctasks.vim'
     Plug 'skywind3000/asyncrun.vim'
+    Plug 'skywind3000/asyncrun.extra'
+    Plug 'preservim/vimux'
     Plug 'denstiny/Terslation'
     Plug 'SpringHan/Terslation.vim', {'on': ['TerslationToggle','TerslationWordTrans']}
     Plug 'voldikss/vim-translator'
@@ -246,9 +248,9 @@ EOF
 
 """ config for Asyncrun/AsynxTasks
 au! BufRead,BufNewFile .tasks set ft=dosini
-let g:asyncrun_mode = 'term'
+let g:asyncrun_mode = 'floaterm'
 let g:asyncrun_rootmarkers=['.git', '.svn', '.project', 'build', 'go.mod', 'Cargo.toml']
-let g:asynctasks_term_pos = 'tab'
+let g:asynctasks_term_pos = 'floaterm'
 let g:asynctasks_extra_config = [
             \ '~/.config/nvim/tasks.ini',
             \]
