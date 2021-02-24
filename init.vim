@@ -37,6 +37,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'liuchengxu/vim-which-key'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
     Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/vim-easy-align'
     Plug 'skywind3000/asynctasks.vim'
     Plug 'skywind3000/asyncrun.vim'
     Plug 'denstiny/Terslation'
@@ -256,5 +257,13 @@ let g:asynctasks_extra_config = [
 nnoremap <silent><F7> :AsyncTask project-build<CR>
 nnoremap <silent><C-F7> :AsyncTask file-build<CR>
 nnoremap <silent><F6> :AsyncTask project-run<CR>
-nnoremap <silent><C-F6> :AsyncTask project-run<CR>
+nnoremap <silent><C-F6> :AsyncTask file-run<CR>
+"""
+
+""" config for vim-easy-align
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 """
