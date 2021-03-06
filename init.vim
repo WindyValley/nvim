@@ -31,19 +31,18 @@ call plug#begin('~/.config/nvim/plugged')
     """ Functional integrations
     Plug 'mbbill/undotree'
     Plug 'liuchengxu/vista.vim'
-    Plug 'mhinz/vim-startify'
     Plug 'voldikss/vim-floaterm'
     Plug 'ryanoasis/vim-devicons'
     Plug 'liuchengxu/vim-which-key'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install()  }  }
-    Plug 'junegunn/fzf.vim'
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-lua/telescope.nvim'
+    Plug 'glepnir/dashboard-nvim'
     Plug 'junegunn/vim-easy-align'
     Plug 'skywind3000/asynctasks.vim'
     Plug 'skywind3000/asyncrun.vim'
     Plug 'skywind3000/asyncrun.extra'
-    Plug 'preservim/vimux'
-    Plug 'denstiny/Terslation'
-    Plug 'SpringHan/Terslation.vim', {'on': ['TerslationToggle','TerslationWordTrans']}
+    Plug 'preservim/vimux' " needed by asyncrun.extra
     Plug 'voldikss/vim-translator'
 
     """ make it colorful
@@ -71,17 +70,6 @@ let g:vista#renderer#icons = {
  \   "variable": "\uf71b",
  \  }
 """ end of config for Vista.vim}}}
-
-"""{{{ config for startify
-
-let g:startify_custom_header =
-        \ startify#pad(split(system('cowsay -f dragon Welcome back, my deer friend!'), '\n'))
-let g:startify_bookmarks=[
-    \ {'rc': '~/.config/nvim/init.vim'},
-    \ {'zrc': '~/.zshrc'}
-    \ ]
-
-"""end of config for startify }}}
 
 """{{{ config with Floaterm
 let g:floaterm_keymap_new    = '<space>fc'
@@ -218,11 +206,6 @@ let g:wildfire_objects = {
     \}
 """}}}
 
-"""{{{ keymap with fzf.vim
-nnoremap <silent> <space>lb :Buffers<CR>
-nnoremap <silent> <space>lh :History<CR>
-"""}}}
-
 """{{{ config for UndoTree
 let g:undotree_WindowLayout='Layout 2'
 nnoremap <M-u> :UndotreeShow<CR>:UndotreeFocus<CR>
@@ -268,4 +251,25 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+"""
+
+"""
+let g:dashboard_default_executive = 'telescope'
+nmap <Leader>ss :<C-u>SessionSave<CR>
+nmap <Leader>sl :<C-u>SessionLoad<CR>
+nnoremap <silent> ,fh :DashboardFindHistory<CR>
+nnoremap <silent> ,ff :DashboardFindFile<CR>
+nnoremap <silent> ,tc :DashboardChangeColorscheme<CR>
+nnoremap <silent> ,fa :DashboardFindWord<CR>
+nnoremap <silent> ,fb :DashboardJumpMark<CR>
+nnoremap <silent> ,cn :DashboardNewFile<CR>
+let g:dashboard_custom_shortcut={
+      \ 'last_session'       : ', s l',
+      \ 'find_history'       : ', f h',
+      \ 'find_file'          : ', f f',
+      \ 'new_file'           : ', c n',
+      \ 'change_colorscheme' : ', t c',
+      \ 'find_word'          : ', f a',
+      \ 'book_marks'         : ', f b',
+      \ }
 """
