@@ -216,20 +216,6 @@ nnoremap <LEADER>fr :Farr<CR>
 let g:far#enable_undo = 1
 """
 
-""" config for nvim-treesitter
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    disable = {},  -- list of language that will be disabled
-  },
-}
-EOF
-"""
-
 """ config for Asyncrun/AsynxTasks
 au! BufRead,BufNewFile .tasks set ft=dosini
 let g:asyncrun_mode = 'floaterm'
@@ -253,7 +239,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 """
 
-"""
+""" config for dashboard.nvim
 let g:dashboard_default_executive = 'telescope'
 nmap <Leader>ss :<C-u>SessionSave<CR>
 nmap <Leader>sl :<C-u>SessionLoad<CR>
@@ -272,4 +258,8 @@ let g:dashboard_custom_shortcut={
       \ 'find_word'          : ', f a',
       \ 'book_marks'         : ', f b',
       \ }
+"""
+
+""" plugin config with lua
+lua require('plugin')
 """
