@@ -64,6 +64,12 @@
                 "buildDirectory": "build"
             }
         },
+        "lua": {
+            "command": "lua-lsp",
+            "filetypes": [
+                "lua"
+            ]
+        },
         "golang": {
             "command": "go-langserver",
             "filetypes": [

@@ -10,7 +10,7 @@ endif
 
 source ~/.config/nvim/etc/universal.vim
 source ~/.config/nvim/etc/keybindings.vim
-
+let g:plug_url_format='git@github.com:%s'
 call plug#begin('~/.config/nvim/plugged')
     if !empty(glob('~/.config/nvim/_machine_different.vim/pluglist.vim'))
         source ~/.config/nvim/_machine_different.vim/pluglist.vim
