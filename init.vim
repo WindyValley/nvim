@@ -44,6 +44,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'skywind3000/asyncrun.extra'
     Plug 'preservim/vimux' " needed by asyncrun.extra
     Plug 'voldikss/vim-translator'
+    Plug 'tommcdo/vim-exchange'
 
     """ make it colorful
     Plug 'vim-airline/vim-airline'
