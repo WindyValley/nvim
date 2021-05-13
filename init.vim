@@ -45,6 +45,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'preservim/vimux' " needed by asyncrun.extra
     Plug 'voldikss/vim-translator'
     Plug 'tommcdo/vim-exchange'
+    Plug 't9md/vim-choosewin'
 
     """ make it colorful
     Plug 'vim-airline/vim-airline'
@@ -259,6 +260,10 @@ let g:dashboard_custom_shortcut={
       \ 'find_word'          : ', f a',
       \ 'book_marks'         : ', f b',
       \ }
+"""
+
+""" config for vim-choosewin
+nmap - <Plug>(choosewin)
 """
 
 """ plugin config with lua

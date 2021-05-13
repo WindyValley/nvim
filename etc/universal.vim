@@ -45,11 +45,7 @@ set nowritebackup
 
 " undo文件设置
 if has("persistent_undo")
-    if has('nvim')
-        set undodir=~/.cache/nvim/undo
-    else
-        set undodir=~/.cache/vim/undo'
-    endif
+    set undodir=~/.cache/nvim/undo
     set undofile
 endif
 
