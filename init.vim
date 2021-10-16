@@ -33,7 +33,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'liuchengxu/vista.vim'
     Plug 'voldikss/vim-floaterm'
     Plug 'ryanoasis/vim-devicons'
-    Plug 'liuchengxu/vim-which-key'
+    Plug 'folke/which-key.nvim'
     Plug 'nvim-lua/popup.nvim'
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-lua/telescope.nvim'
@@ -145,11 +145,6 @@ vmap <silent> <space>tr <Plug>TranslateRV
 " Translate the text in clipboard
 nmap <silent> <space>tx <Plug>TranslateX
 """end of config for translators}}}
-
-"""{{{ config for whick-key
-nnoremap <silent> <space> :<c-u>WhichKey '<space>'<CR>
-nnoremap <silent> <leader> :<c-u>WhichKey '\'<CR>
-"""end of config for which-key}}}
 
 """{{{ config for vimtex
 let g:tex_flavor="latex"

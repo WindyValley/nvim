@@ -13,7 +13,9 @@ vim.o['foldexpr']='nvim_treesitter#foldexpr()'
 require('telescope').setup {
     defaults = {
       prompt_prefix = '🍔 ',
-      prompt_position = 'top',
+      layout_config = {
+          prompt_position = 'top',
+      },
       sorting_strategy = 'ascending',
       file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
       grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
@@ -21,3 +23,9 @@ require('telescope').setup {
     }
 }
 
+-- config for whick-key.nvim
+require('which-key').setup {
+    layout = {
+        align = 'center',
+    }
+}
