@@ -30,7 +30,6 @@ mason_lspconfig.setup({
 		"pyright",
 		"jsonls",
 		"texlab",
-		"solargraph",
 		"yamlls",
 	},
 	-- auto-install configured servers (with lspconfig)
