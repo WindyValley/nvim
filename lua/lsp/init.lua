@@ -1,70 +1,8 @@
---[[
-local cmp = require('cmp')
-cmp.setup({
-    snippet = {
-        expand = function(args)
-            -- luasnip.lsp_expand(args.body)
-            vim.fn["UltiSnips#Anon"](args.body)
-        end,
-    },
-    mapping = {
-        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c' }),
-        ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c' }),
-        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
-        ['<C-e>'] = cmp.mapping.close(),
-        ['<CR>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Insert,
-        },
-        ['<Tab>'] = function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif vim.fn['UltiSnips#CanExpandSnippet']() or vim.fn['UltiSnips#CanJumpForwards']() then
-                vim.fn['UltiSnips#ExpandSnippetOrJump']()
-            else
-                fallback()
-            end
-        end,
-        ['<S-Tab>'] = function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif vim.fn['UltiSnips#CanJumpBackwards']() then
-                vim.fn['UltiSnips#JumpBackwards']()
-            else
-                fallback()
-            end
-        end,
-    },
-    sources = cmp.config.sources({
-        {name = 'nvim_lsp'},
-        {name = 'nvim_lua'},
-        {name = 'ultisnips'},
-    },{
-            {name = 'buffer'},
-        })
-})
-cmp.setup.cmdline('/', {
-    sources = {
-        { name = 'buffer'}
-    }
-})
-cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({
-        {name = 'path'}
-    },{
-        {name = 'cmdline'}
-    })
-})
-]]--
-
-vim.g.coq_settings = {
-    auto_start = true,
-}
-local coq = require('coq')
-require("coq_3p") {
-    {src = "nvimlua", short_name = "nLUA"},
-    { src = "bc", short_name = "MATH", precision = 6 },
-}
-
+local cmp_load_result = require('lsp.nvim_cmp')
+if not cmp_load_result then
+    return
+end
+require('lsp.mason')
 local lsp_installer_servers = require'nvim-lsp-installer.servers'
 local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -90,9 +28,9 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so', [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]], opts)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-local server_available, requested_server = lsp_installer_servers.get_server("sumneko_lua")
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+--[[
+local server_available, requested_server = lsp_installer_servers.get_server("lua_ls")
 if server_available then
     requested_server:on_ready(function ()
         local runtime_path = vim.split(package.path,';')
@@ -119,7 +57,7 @@ if server_available then
                 },
             },
         }
-        requested_server:setup(coq.lsp_ensure_capabilities(opts))
+        requested_server:setup(opts)
     end)
     if not requested_server:is_installed() then
         -- Queue the server to be installed
@@ -138,7 +76,7 @@ for _, lsp in ipairs(servers) do
                 on_attach = on_attach,
                 capabilities = capabilities,
             }
-            requested_server:setup(coq.lsp_ensure_capabilities(opts))
+            requested_server:setup(opts)
         end)
         if not requested_server:is_installed() then
             -- Queue the server to be installed
@@ -146,3 +84,4 @@ for _, lsp in ipairs(servers) do
         end
     end
 end
+]]--

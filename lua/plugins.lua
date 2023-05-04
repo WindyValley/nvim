@@ -38,9 +38,6 @@ return require('packer').startup(function(use)
         end
     }
     use {
-        'neovim/nvim-lspconfig',
-        'williamboman/nvim-lsp-installer',
-
         'hrsh7th/nvim-cmp',
         'hrsh7th/cmp-nvim-lsp',
         'hrsh7th/cmp-nvim-lua',
@@ -50,13 +47,20 @@ return require('packer').startup(function(use)
         'SirVer/ultisnips',
         'quangnguyen30192/cmp-nvim-ultisnips',
         'honza/vim-snippets',
-        -- 'L3MON4D3/LuaSnip',
-        -- 'saadparwaiz1/cmp_luasnip',
-        -- 'rafamadriz/friendly-snippets',
     }
-    use {'ms-jpq/coq_nvim', branch = 'coq'}
-    use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
-    use {'ms-jpq/coq.thirdparty', branch = '3p'}
+    use {
+        'williamboman/mason.nvim',
+        'williamboman/mason-lspconfig.nvim',
+        'neovim/nvim-lspconfig',
+    }
+    use {
+        'glepnir/lspsaga.nvim',
+        branch = 'main',
+    }
+    use {
+        'jose-elias-alvarez/null-ls.nvim',
+        'jayp0521/mason-null-ls.nvim',
+    }
     use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
     use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate'}
     use {
